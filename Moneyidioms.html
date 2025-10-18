@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Money Idioms Matching Game – Modern English Australia</title>
+
+<style>
+  :root {
+    --bg:#1e1e1e;
+    --card:#689548;
+    --accent:#ff7a1a;
+    --ink:#f5f5f5;
+    --muted:#bbbbbb;
+    --line:#3a3a3a;
+  }
+
+  body {
+    margin:0;
+    font-family:system-ui, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+  }
+  /* ===== Modern English Australia Banner ===== */
+  .topbar{
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:.85rem 1rem;
+  }
+  .brand{
+    max-width:1100px; margin:0 auto;
+    font-weight:700;
+    letter-spacing:.2px;
+    font-size:clamp(1rem, 3.5vw, 1.25rem);
+    color:var(--accent);
+    text-transform:uppercase;
+}
+
+  /* ===== Main ===== */
+  main {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    padding:1rem;
+    text-align:center;
+  }
+
+  h1 {
+    color:var(--accent);
+    letter-spacing:2px;
+    margin-top:1rem;
+    font-size:clamp(1.4rem,2.5vw,2rem);
+  }
+
+  p {
+    max-width:700px;
+    margin:0.5rem auto 1rem auto;
+    opacity:0.9;
+  }
+
+  #game {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+    width:90%;
+    max-width:700px;
+    margin-top:20px;
+  }
+
+  .card {
+    background:var(--card);
+    border:2px solid var(--accent);
+    opacity:0.9;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    cursor:pointer;
+    transition:background .3s, color .3s;
+    min-height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+  }
+
+  .card.flipped {
+    background:var(--accent);
+    color:#000;
+  }
+
+  .card.matched {
+    color:#000;
+    cursor:default;
+  }
+
+  #status {
+    margin-top:20px;
+    font-size:1.2rem;
+  }
+
+  /* ===== Button Styling ===== */
+  .links {
+    display:flex;
+    justify-content:center;
+    margin-top:1.5rem;
+  }
+  a.btn {
+    background:var(--accent);
+    color:#111;
+    font-weight:700;
+    text-decoration:none;
+    padding:.8rem 1.4rem;
+    border-radius:10px;
+    border:1px solid transparent;
+    transition:transform .06s ease, background .2s ease;
+    letter-spacing:0.5px;
+  }
+  a.btn:hover {
+    background:#ff9f4d;
+    transform:translateY(-1px);
+  }
+  a.btn:active {
+    transform:translateY(0);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    width:100%;
+    text-align:center;
+    background:var(--bg);
+    color:var(--muted);
+    padding:.9rem 0;
+    border-top:1px solid var(--line);
+    font-size:0.9rem;
+  }
+
+  /* ===== Responsive adjustments ===== */
+  @media (max-width:600px){
+    .card {
+      min-height:80px;
+      font-size:1.3rem;
+      padding:12px;
+    }
+    #game { gap:8px; }
+  }
+</style>
+</head>
+
+<body>
+  <!-- ===== Branded Banner ===== -->
+  <div class="topbar" role="banner">
+    <div class="brand">Modern English Australia</div>
+  </div>
+
+  <!-- ===== Game Section ===== -->
+  <main>
+    <h1>💵 Money Idioms Matching Game</h1>
+    <p>Flip two cards to match each idiom with its meaning.</p>
+
+    <div id="game"></div>
+    <div id="status"></div>
+
+    <!-- Practice Button -->
+    <div class="links">
+      <a href="MoneyDating.html" class="btn">Further Practice</a>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    © 2025 KoalaSpiesSydney. All rights reserved.
+  </footer>
+
+<script>
+const pairs = [
+  ["Break the bank","Be very expensive"],
+  ["Tighten your belt","Spend less money than usual"],
+  ["Cost an arm and a leg","Extremely expensive"],
+  ["In the red","Owe money / negative balance"],
+  ["In the black","Have profit / positive balance"],
+  ["Money doesn’t grow on trees","Money is not easy to earn"],
+  ["Pay through the nose","Pay too much for something"],
+  ["Rolling in money","Be very rich"],
+  ["On the house","Free of charge"],
+  ["Foot the bill","Pay for something, often unwillingly"]
+];
+
+const matchColors = [
+  "#2ecc71","#3498db","#9b59b6","#f1c40f","#e67e22",
+  "#1abc9c","#e74c3c","#16a085","#f39c12","#8e44ad"
+];
+
+let cards = pairs.flatMap(([idiom, meaning]) => [
+  { text: idiom, pair: idiom },
+  { text: meaning, pair: idiom }
+]);
+cards.sort(() => Math.random() - 0.5);
+
+const game = document.getElementById("game");
+let first = null, second = null, lock = false, matchedCount = 0;
+const colorMap = {};
+
+cards.forEach(data => {
+  const div = document.createElement("div");
+  div.classList.add("card");
+  div.textContent = "💵";
+  div.dataset.pair = data.pair;
+  div.dataset.text = data.text;
+  game.appendChild(div);
+
+  div.addEventListener("click", () => {
+    if (lock || div.classList.contains("flipped") || div.classList.contains("matched")) return;
+
+    div.classList.add("flipped");
+    div.textContent = data.text;
+
+    if (!first) {
+      first = div;
+    } else {
+      second = div;
+      lock = true;
+      setTimeout(() => {
+        if (first.dataset.pair === second.dataset.pair) {
+          if (!colorMap[first.dataset.pair]) {
+            const used = Object.keys(colorMap).length;
+            colorMap[first.dataset.pair] = matchColors[used % matchColors.length];
+          }
+          const c = colorMap[first.dataset.pair];
+          [first, second].forEach(card => {
+            card.classList.remove("flipped");
+            card.classList.add("matched");
+            card.style.background = c;
+          });
+          matchedCount++;
+          if (matchedCount === pairs.length) {
+            document.getElementById("status").textContent = "✅ Brilliant! You matched all idioms!";
+          }
+        } else {
+          first.classList.remove("flipped");
+          second.classList.remove("flipped");
+          first.textContent = "💵";
+          second.textContent = "💵";
+        }
+        [first, second, lock] = [null, null, false];
+      }, 800);
+    }
+  });
+});
+</script>
+</body>
+</html>
