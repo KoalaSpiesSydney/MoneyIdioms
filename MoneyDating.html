@@ -63,13 +63,18 @@
   }
   h2{
     font-style: italic;
-    color: #27ae60;
+    color: rgb(227, 12, 138);
     margin-top:1rem;
-    margin-bottom:.75rem;
+    margin-bottom:.65rem;
     font-size:clamp(2.4rem, 4.5vw, 3rem);
     
   }
-
+h3{
+    color:var(--ink);
+    margin-top:1rem;
+    margin-bottom:.75rem;
+    font-size:clamp(1.4rem, 4.5vw, 2rem);
+  }
   p.instructions{
     color:var(--muted);
     font-size:clamp(.95rem, 2.5vw, 1.05rem);
@@ -171,17 +176,19 @@
   <main>
     <h2> Love or Money</h2>
     <h1>Write from Dictation – Further Practice</h1>
-    <p class="instructions">
-      Listen and write from dictation, then check each answer individually.  
-      Discuss your answers with a partner.
-    </p>
+    <h3 class="instructions">
+       WRITE THE QUESTIONS EXACTLY AS YOU HEAR THEM. <br>
+       *USE CONTRACTION (i.e. they are = they're) <br>
+      ** USE PUNCTUATION (?).  <br>
+      After you have written all the answers, discuss them with a partner.
+    </h3>
 
     <div class="audio-list">
       <div class="audio-slot" data-answer="When on a first date who should pay the bill?">
           <div class="audio-slot" data-answer="When on a first date, who should pay the bill?"></div>
         <strong>Audio 1:</strong>
         <audio controls src="1When.mp3"></audio>
-        <textarea class="response" placeholder="Type your dictation here..."></textarea>
+        <textarea class="response" placeholder="Type the question as you hear it, here" ></textarea>
         <button class="check-btn">Check Answer</button>
         <div class="feedback"></div>
       </div>
@@ -189,7 +196,7 @@
       <div class="audio-slot" data-answer="If a restaurant makes a mistake, should the meal be on the house?">
         <strong>Audio 2:</strong>
         <audio controls src="2If.mp3"></audio>
-        <textarea class="response" placeholder="Type your dictation here..."></textarea>
+        <textarea class="response" placeholder="Type the question as you hear it, here" ></textarea>
         <button class="check-btn">Check Answer</button>
         <div class="feedback"></div>
       </div>
@@ -197,7 +204,7 @@
       <div class="audio-slot" data-answer="Should a date cost an arm and a leg?">
         <strong>Audio 3:</strong>
         <audio controls src="3Should.mp3"></audio>
-        <textarea class="response" placeholder="Type your dictation here..."></textarea>
+        <textarea class="response" placeholder="Type the question as you hear it, here."></textarea>
         <button class="check-btn">Check Answer</button>
         <div class="feedback"></div>
       </div>
@@ -205,7 +212,7 @@
       <div class="audio-slot" data-answer="Does a wedding need to break the bank in your culture?">
         <strong>Audio 4:</strong>
         <audio controls src="4Does.mp3"></audio>
-        <textarea class="response" placeholder="Type your dictation here..."></textarea>
+        <textarea class="response" placeholder="Type the question as you hear it, here."></textarea>
         <button class="check-btn">Check Answer</button>
         <div class="feedback"></div>
       </div>
@@ -214,16 +221,17 @@
       <div class="audio-slot" data-answer="Would you date someone just because they are rolling in money?"></div>
         <strong>Audio 5:</strong>
         <audio controls src="5.Would.mp3"></audio>
-        <textarea class="response" placeholder="Type your dictation here..."></textarea>
+        <textarea class="response" placeholder="Type the question as you hear it, here" ></textarea>
         <button class="check-btn">Check Answer</button>
         <div class="feedback"></div>
       </div>
+      <h3>  NOW ASK A PARTNER THESE QUESTIONS AND HAVE A DISCUSSION</h3>
     </div>
 
     <!-- Navigation Buttons -->
     <div class="links">
       <button id="reset">Try Again</button>
-      <a href="index.html" class="btn">⬅ Back to Matching Game</a>
+      <a href="Moneyidioms.html" class="btn">⬅ Back to Matching Game</a>
     </div>
   </main>
 
@@ -267,4 +275,3 @@ function normalize(str){
 </script>
 </body>
 </html>
-
