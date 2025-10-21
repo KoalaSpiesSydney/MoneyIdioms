@@ -25,20 +25,14 @@
     align-items:center;
     min-height:100vh;
   }
-  /* ===== Modern English Australia Banner ===== */
-  .topbar{
-    background:var(--bg);
-    border-bottom:1px solid var(--line);
-    padding:.85rem 1rem;
-  }
-  .brand{
+    .brand {
     max-width:1100px; margin:0 auto;
     font-weight:700;
     letter-spacing:.2px;
     font-size:clamp(1rem, 3.5vw, 1.25rem);
     color:var(--accent);
     text-transform:uppercase;
-}
+    }
 
   /* ===== Main ===== */
   main {
@@ -168,7 +162,8 @@
 
     <!-- Practice Button -->
     <div class="links">
-      <a href="MoneyDating.html" class="btn">Further Practice</a>
+      <a href="MoneyDating.html" class="btn">Listening</a>
+       <a href="https://ieltspteaustralianexaminertutor.com/" class="btn">HOME</a>
     </div>
   </main>
 
@@ -245,7 +240,7 @@ cards.forEach(data => {
           first.classList.remove("flipped");
           second.classList.remove("flipped");
           first.textContent = "💵";
-          second.textContent = "💵";
+          second.textContent = "";
         }
         [first, second, lock] = [null, null, false];
       }, 800);
@@ -255,4 +250,6 @@ cards.forEach(data => {
 </script>
 </body>
 </html>
+
+
 
