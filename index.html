@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Money Idioms Matching Game – Modern English AU</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600;6..72,700&display=swap" rel="stylesheet">
+
+
 <style>
   :root {
     --bg:#f5f5f5;
@@ -17,7 +22,7 @@
 
   body {
     margin:0;
-    font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family:"Newsreader", Georgia, serif;
     background:var(--bg);
     color:var(--ink);
     display:flex;
@@ -27,22 +32,21 @@
 
   /* ===== Header ===== */
   header {
-    background:#bbbbbb;
+    background:#f7f4f4;
     color:var(--accent);
     text-align:center;
-    padding:1.4rem 0 1rem;
-    border-bottom:1px solid var(--line);
+    padding:1.4rem 0 1rem;;
     letter-spacing:2px;
     font-weight:700;
-    font-size:1.4rem;
+    font-size:1.2rem;
   }
   header span {
     display:block;
-    color:#f5f5f5;
+    color:#302d2d;
     font-weight:300;
-    font-size:0.95rem;
+    font-size:0.60rem;
     letter-spacing:3px;
-    margin-top:4px;
+    margin-top:1px;
   }
 
   /* ===== Navigation ===== */
@@ -250,7 +254,7 @@ const colorMap = {};
 cards.forEach(data => {
   const div = document.createElement("div");
   div.classList.add("card");
-  div.textContent = "💵";
+  div.textContent = "?";
   div.dataset.pair = data.pair;
   div.dataset.text = data.text;
   game.appendChild(div);
